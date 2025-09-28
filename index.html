@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tyrell Reid - Web Development Company</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #dc2626;
+            --secondary-color: #ef4444;
+            --accent-color: #f87171;
+            --text-dark: #ffffff;
+            --text-light: #d1d5db;
+            --bg-light: #111827;
+            --white: #000000;
+            --shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: #000000;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            background: rgba(0, 0, 0, 0.98);
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .mobile-menu span {
+            width: 25px;
+            height: 3px;
+            background: var(--text-dark);
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: var(--text-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000"><defs><radialGradient id="a" cx="50%" cy="50%"><stop offset="0%" stop-color="%23ffffff" stop-opacity="0.1"/><stop offset="100%" stop-color="%23ffffff" stop-opacity="0"/></radialGradient></defs><circle cx="200" cy="200" r="100" fill="url(%23a)"/><circle cx="800" cy="300" r="150" fill="url(%23a)"/><circle cx="400" cy="700" r="120" fill="url(%23a)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text .highlight {
+            background: linear-gradient(45deg, #dc2626, #ffffff, #10b981, #dc2626, #ffffff, #10b981);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: colorWheel 3s ease-in-out infinite;
+        }
+
+        @keyframes colorWheel {
+            0% {
+                background-position: 0% 50%;
+            }
+            25% {
+                background-position: 100% 50%;
+            }
+            50% {
+                background-position: 100% 100%;
+            }
+            75% {
+                background-position: 0% 100%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+            background: var(--secondary-color);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-dark);
+            color: var(--primary-color);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* About Section */
+        .about {
+            padding: 6rem 0;
+            background: #111827;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .section-title p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            background: #1f2937;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            color: var(--text-dark);
+        }
+
+        .skill-item i {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 6rem 0;
+            background: #000000;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .service-card {
+            background: #1f2937;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid #374151;
+            color: var(--text-dark);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Portfolio Section */
+        .portfolio {
+            padding: 6rem 0;
+            background: #111827;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .portfolio-item {
+            background: #1f2937;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            color: var(--text-dark);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .portfolio-image {
+            height: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 3rem;
+        }
+
+        .portfolio-content {
+            padding: 1.5rem;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .portfolio-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 6rem 0;
+            background: #000000;
+        }
+
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-dark);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .contact-form {
+            background: #1f2937;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            color: var(--text-dark);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #374151;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            background: #111827;
+            color: var(--text-dark);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        .footer {
+            background: #000000;
+            color: var(--text-dark);
+            padding: 3rem 0 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--text-dark);
+        }
+
+        .footer-section p,
+        .footer-section a {
+            color: var(--text-light);
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            color: var(--text-light);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: flex;
+            }
+
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                justify-content: center;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-text h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .service-card,
+            .contact-form {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#" class="logo">Tyrell Reid</a>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <div class="mobile-menu" id="mobile-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text fade-in-up">
+                    <h1>Building Digital <span class="highlight">Excellence</span></h1>
+                    <p>I'm Tyrell Reid, a passionate web developer creating modern, responsive websites and web applications that drive business growth and deliver exceptional user experiences.</p>
+                    <div class="cta-buttons">
+                        <a href="#portfolio" class="btn btn-primary">View My Work</a>
+                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                    </div>
+                </div>
+                <div class="hero-image fade-in-up">
+                    <div style="width: 400px; height: 400px; background: #000000; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 12px; color: #dc2626; padding: 20px; text-align: left; overflow: hidden; position: relative;">
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                            <div style="color: #dc2626; opacity: 0.8; margin-bottom: 10px;">&gt; PORTFOLIO SYSTEM INITIALIZED</div>
+                            <div style="color: #ef4444; opacity: 0.7; margin-bottom: 10px;">&gt; LOADING WEB DEVELOPMENT MODULES...</div>
+                            <div style="color: #f87171; opacity: 0.6; margin-bottom: 15px;">&gt; CONNECTING TO CREATIVITY ENGINE</div>
+                            <br>
+                            <div style="color: #dc2626; margin-bottom: 5px;">const developer = {</div>
+                            <div style="color: #ef4444; margin-bottom: 5px;">&nbsp;&nbsp;name: 'Tyrell Reid',</div>
+                            <div style="color: #f87171; margin-bottom: 5px;">&nbsp;&nbsp;skills: ['React', 'Node.js', 'Python'],</div>
+                            <div style="color: #dc2626; margin-bottom: 5px;">&nbsp;&nbsp;experience: '5+ years',</div>
+                            <div style="color: #ef4444; margin-bottom: 5px;">&nbsp;&nbsp;passion: 'Web Development'</div>
+                            <div style="color: #f87171; margin-bottom: 15px;">};</div>
+                            <br>
+                            <div style="color: #dc2626; margin-bottom: 5px;">const createWebsite = () =&gt; {</div>
+                            <div style="color: #ef4444; margin-bottom: 5px;">&nbsp;&nbsp;return 'Exceptional User Experience';</div>
+                            <div style="color: #f87171; margin-bottom: 15px;">};</div>
+                            <br>
+                            <div style="color: #dc2626; opacity: 0.5; margin-bottom: 5px;">&gt; SYSTEM STATUS: ONLINE</div>
+                            <div style="color: #ef4444; opacity: 0.4; margin-bottom: 5px;">&gt; READY TO BUILD YOUR VISION</div>
+                            <div style="color: #f87171; opacity: 0.3;">&gt; AWAITING YOUR COMMAND...</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+                <p>Passionate about creating digital solutions that make a difference</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Full-Stack Web Developer</h3>
+                    <p>With years of experience in web development, I specialize in creating modern, responsive websites and web applications that not only look great but also perform exceptionally well across all devices and platforms.</p>
+                    <p>My approach combines technical expertise with creative problem-solving to deliver solutions that exceed client expectations and drive real business results.</p>
+                    <div class="skills">
+                        <div class="skill-item">
+                            <i class="fab fa-html5"></i>
+                            <span>HTML5</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-css3-alt"></i>
+                            <span>CSS3</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-js-square"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-react"></i>
+                            <span>React</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-node-js"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fab fa-python"></i>
+                            <span>Python</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div style="width: 100%; height: 400px; background: #000000; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-family: 'Courier New', monospace; font-size: 11px; color: #dc2626; padding: 20px; text-align: left; overflow: hidden; position: relative;">
+                        <div style="width: 100%; height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                            <div style="color: #dc2626; opacity: 0.8; margin-bottom: 8px;">&gt; DEVELOPER PROFILE LOADING</div>
+                            <div style="color: #ef4444; opacity: 0.7; margin-bottom: 8px;">&gt; ANALYZING SKILL SET...</div>
+                            <div style="color: #f87171; opacity: 0.6; margin-bottom: 12px;">&gt; INITIALIZING EXPERTISE MATRIX</div>
+                            <br>
+                            <div style="color: #dc2626; margin-bottom: 4px;">class FullStackDeveloper {</div>
+                            <div style="color: #ef4444; margin-bottom: 4px;">&nbsp;&nbsp;constructor() {</div>
+                            <div style="color: #f87171; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;this.name = 'Tyrell Reid';</div>
+                            <div style="color: #dc2626; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;this.role = 'Web Developer';</div>
+                            <div style="color: #ef4444; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;this.experience = '5+ years';</div>
+                            <div style="color: #f87171; margin-bottom: 8px;">&nbsp;&nbsp;}</div>
+                            <br>
+                            <div style="color: #dc2626; margin-bottom: 4px;">&nbsp;&nbsp;getSkills() {</div>
+                            <div style="color: #ef4444; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;return [</div>
+                            <div style="color: #f87171; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'HTML5', 'CSS3', 'JavaScript',</div>
+                            <div style="color: #dc2626; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'React', 'Node.js', 'Python',</div>
+                            <div style="color: #ef4444; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'MongoDB', 'MySQL', 'Git'</div>
+                            <div style="color: #f87171; margin-bottom: 8px;">&nbsp;&nbsp;&nbsp;&nbsp;];</div>
+                            <div style="color: #dc2626; margin-bottom: 8px;">&nbsp;&nbsp;}</div>
+                            <br>
+                            <div style="color: #dc2626; margin-bottom: 4px;">&nbsp;&nbsp;createProject(requirements) {</div>
+                            <div style="color: #ef4444; margin-bottom: 4px;">&nbsp;&nbsp;&nbsp;&nbsp;return 'Exceptional Solution';</div>
+                            <div style="color: #f87171; margin-bottom: 12px;">&nbsp;&nbsp;}</div>
+                            <div style="color: #dc2626; margin-bottom: 12px;">}</div>
+                            <br>
+                            <div style="color: #dc2626; opacity: 0.5; margin-bottom: 4px;">&gt; PROFILE ANALYSIS COMPLETE</div>
+                            <div style="color: #ef4444; opacity: 0.4; margin-bottom: 4px;">&gt; READY FOR NEW CHALLENGES</div>
+                            <div style="color: #f87171; opacity: 0.3;">&gt; PASSION: WEB DEVELOPMENT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Services</h2>
+                <p>Comprehensive web development solutions tailored to your business needs</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-globe"></i>
+                    </div>
+                    <h3>Web Development</h3>
+                    <p>Custom websites built with modern technologies, responsive design, and optimized performance for the best user experience.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Mobile-First Design</h3>
+                    <p>Responsive designs that work perfectly on all devices, ensuring your website looks great on smartphones, tablets, and desktops.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>Performance Optimization</h3>
+                    <p>Fast-loading websites with optimized code, images, and assets to improve user experience and search engine rankings.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h3>E-Commerce Solutions</h3>
+                    <p>Complete online stores with secure payment processing, inventory management, and user-friendly shopping experiences.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>SEO Optimization</h3>
+                    <p>Search engine optimized websites that help your business rank higher in search results and attract more organic traffic.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h3>Maintenance & Support</h3>
+                    <p>Ongoing website maintenance, updates, and technical support to keep your website running smoothly and securely.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>Portfolio</h2>
+                <p>Recent projects showcasing my expertise and creativity</p>
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: #000000; padding: 20px; font-family: 'Courier New', monospace; font-size: 11px; text-align: left; color: #dc2626; overflow: hidden; position: relative;">
+                        <div style="color: #dc2626; opacity: 0.8;">&gt; E-COMMERCE PLATFORM INITIALIZED</div>
+                        <div style="color: #ef4444; opacity: 0.7;">&gt; LOADING REACT COMPONENTS...</div>
+                        <div style="color: #f87171; opacity: 0.6;">&gt; CONNECTING TO DATABASE</div>
+                        <br>
+                        <div style="color: #dc2626;">const ProductCard = ({ product }) =&gt; {</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;const [quantity, setQuantity] = useState(1);</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;const [loading, setLoading] = useState(false);</div>
+                        <br>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;const handleAddToCart = async () =&gt; {</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;setLoading(true);</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;&nbsp;&nbsp;await addToCart(product.id, quantity);</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;setLoading(false);</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;};</div>
+                        <br>
+                        <div style="color: #f87171;">&nbsp;&nbsp;return (</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;div className="product-card"&gt;</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;img src={product.image} /&gt;</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;h3&gt;{product.name}&lt;/h3&gt;</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&gt;${product.price}&lt;/span&gt;</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;button onClick={handleAddToCart}&gt;</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{loading ? 'Adding...' : 'Add to Cart'}</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;/button&gt;</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;&lt;/div&gt;</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;);</div>
+                        <div style="color: #dc2626;">};</div>
+                        <br>
+                        <div style="color: #dc2626; opacity: 0.5;">&gt; SYSTEM STATUS: ONLINE</div>
+                        <div style="color: #ef4444; opacity: 0.4;">&gt; READY FOR PRODUCTION</div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A modern online store with advanced features including product filtering, user authentication, and secure payments.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://github.com/tyrellreid" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: #000000; padding: 20px; font-family: 'Courier New', monospace; font-size: 11px; text-align: left; color: #dc2626; overflow: hidden; position: relative;">
+                        <div style="color: #dc2626; opacity: 0.8;">&gt; CORPORATE WEBSITE API STARTING</div>
+                        <div style="color: #ef4444; opacity: 0.7;">&gt; INITIALIZING EXPRESS SERVER...</div>
+                        <div style="color: #f87171; opacity: 0.6;">&gt; CONNECTING TO MYSQL DATABASE</div>
+                        <br>
+                        <div style="color: #dc2626;">const express = require('express');</div>
+                        <div style="color: #ef4444;">const mysql = require('mysql2');</div>
+                        <div style="color: #f87171;">const cors = require('cors');</div>
+                        <br>
+                        <div style="color: #dc2626;">const app = express();</div>
+                        <div style="color: #ef4444;">app.use(express.json());</div>
+                        <div style="color: #f87171;">app.use(cors());</div>
+                        <br>
+                        <div style="color: #dc2626;">// Database connection pool</div>
+                        <div style="color: #ef4444;">const db = mysql.createPool({</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;host: process.env.DB_HOST,</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;user: process.env.DB_USER,</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;password: process.env.DB_PASS,</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;database: 'corporate_db'</div>
+                        <div style="color: #dc2626;">});</div>
+                        <br>
+                        <div style="color: #dc2626;">// Contact form endpoint</div>
+                        <div style="color: #ef4444;">app.post('/api/contact', (req, res) =&gt; {</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;const { name, email, message } = req.body;</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;const sql = 'INSERT INTO contacts SET ?';</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;db.query(sql, { name, email, message });</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;res.json({ success: true });</div>
+                        <div style="color: #dc2626;">});</div>
+                        <br>
+                        <div style="color: #dc2626; opacity: 0.5;">&gt; SERVER RUNNING ON PORT 3000</div>
+                        <div style="color: #ef4444; opacity: 0.4;">&gt; API ENDPOINTS ACTIVE</div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Corporate Website</h3>
+                        <p>A professional business website with CMS integration, contact forms, and analytics tracking.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">WordPress</span>
+                            <span class="tag">PHP</span>
+                            <span class="tag">MySQL</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://github.com/tyrellreid" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <div class="portfolio-image" style="background: #000000; padding: 20px; font-family: 'Courier New', monospace; font-size: 11px; text-align: left; color: #dc2626; overflow: hidden; position: relative;">
+                        <div style="color: #dc2626; opacity: 0.8;">&gt; ANALYTICS DASHBOARD LOADING</div>
+                        <div style="color: #ef4444; opacity: 0.7;">&gt; INITIALIZING VUE.JS COMPONENTS...</div>
+                        <div style="color: #f87171; opacity: 0.6;">&gt; CONNECTING TO DATA STREAMS</div>
+                        <br>
+                        <div style="color: #dc2626;">import { createApp } from 'vue';</div>
+                        <div style="color: #ef4444;">import { ref, reactive, onMounted } from 'vue';</div>
+                        <div style="color: #f87171;">import * as d3 from 'd3';</div>
+                        <br>
+                        <div style="color: #dc2626;">const Dashboard = {</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;setup() {</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;&nbsp;&nbsp;const data = ref([]);</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;const loading = ref(true);</div>
+                        <br>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;const fetchData = async () =&gt; {</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const response = await fetch('/api/analytics');</div>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.value = await response.json();</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loading.value = false;</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;&nbsp;&nbsp;};</div>
+                        <br>
+                        <div style="color: #dc2626;">&nbsp;&nbsp;&nbsp;&nbsp;onMounted(fetchData);</div>
+                        <div style="color: #ef4444;">&nbsp;&nbsp;&nbsp;&nbsp;return { data, loading };</div>
+                        <div style="color: #f87171;">&nbsp;&nbsp;}</div>
+                        <div style="color: #dc2626;">};</div>
+                        <br>
+                        <div style="color: #dc2626; opacity: 0.5;">&gt; DASHBOARD RENDERED SUCCESSFULLY</div>
+                        <div style="color: #ef4444; opacity: 0.4;">&gt; REAL-TIME DATA STREAMING</div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Analytics Dashboard</h3>
+                        <p>An interactive dashboard for data visualization with real-time updates and customizable charts.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">D3.js</span>
+                            <span class="tag">Python</span>
+                        </div>
+                        <div style="margin-top: 1rem;">
+                            <a href="https://github.com/tyrellreid" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.9rem; padding: 0.5rem 1rem;">View on GitHub</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to start your next project? Let's discuss how I can help bring your vision to life.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Let's Work Together</h3>
+                    <p>I'm always excited to work on new projects and help businesses grow their online presence. Get in touch to discuss your requirements.</p>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong><br>
+                            tyrellpr2@gmail.com
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <strong>Phone</strong><br>
+                            +1 (437) 259-1577
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location</strong><br>
+                            Available Worldwide
+                        </div>
+                    </div>
+                </div>
+                <form class="contact-form" id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Tyrell Reid</h3>
+                    <p>Creating exceptional web experiences that drive business growth and user engagement.</p>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/tyrell-reid-a32a89365" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com/tyrellreid" target="_blank" rel="noopener noreferrer"><i class="fab fa-github"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <p><a href="#services">Web Development</a></p>
+                    <p><a href="#services">Mobile Design</a></p>
+                    <p><a href="#services">E-Commerce</a></p>
+                    <p><a href="#services">SEO Optimization</a></p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <p><a href="#about">About</a></p>
+                    <p><a href="#portfolio">Portfolio</a></p>
+                    <p><a href="#contact">Contact</a></p>
+                    <p><a href="#services">Services</a></p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Tyrell Reid. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenu.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Form submission
+        document.getElementById('contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const name = formData.get('name');
+            const email = formData.get('email');
+            const subject = formData.get('subject');
+            const message = formData.get('message');
+            
+            // Simple validation
+            if (!name || !email || !subject || !message) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            
+            // Simulate form submission
+            alert('Thank you for your message! I\'ll get back to you soon.');
+            this.reset();
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in-up');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.service-card, .portfolio-item, .about-content, .contact-content').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
